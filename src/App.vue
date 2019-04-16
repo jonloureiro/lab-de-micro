@@ -34,10 +34,10 @@ export default {
   methods: {
     async fetchRat(value) {
       this.ip = value;
-      console.log(this.ip);
+      // console.log(this.ip);
       try {
         const response = await fetch(`http://${this.ip}/index`);
-        console.log(response);
+        // console.log(response);
         const obj = JSON.parse(response);
         if (obj.results === 'connected') {
           this.connected = true;
@@ -45,7 +45,7 @@ export default {
       } catch (error) {
         this.connected = false;
         this.sensor = 0;
-        console.log(error);
+        // console.log(error);
       }
     },
   },

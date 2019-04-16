@@ -31,13 +31,19 @@ export default {
   },
   methods: {
     async forward() {
-      console.log('teste');
+      try {
+        await fetch(`http://${this.ip}/forward`);
+        // console.log(response);
+      } catch (error) {
+        this.sensor = 0;
+        this.$emit('fetch-rat', this.ip);
+        // console.log(error);
+      }
     },
     async fetchSensor() {
-      console.log();
       try {
         const response = await fetch(`http://${this.ip}/sensor`);
-        console.log(response);
+        // console.log(response);
         const obj = JSON.parse(response);
         if (obj.results >= 0) {
           this.sensor = obj.results;
@@ -45,11 +51,8 @@ export default {
       } catch (error) {
         this.sensor = 0;
         this.$emit('fetch-rat', this.ip);
-        console.log(error);
+        // console.log(error);
       }
-    },
-    async getForward() {
-      console.log('kdsopkds');
     },
   },
 };
